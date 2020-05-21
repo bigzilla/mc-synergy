@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import synergies from "../assets/js/synergies";
+import synergies, { synergy } from "../assets/js/synergies";
 
 export default {
   data: () => ({
@@ -64,6 +64,19 @@ export default {
               : false;
         });
       });
+
+      // add blood demon effect
+      if (
+        typeof res[synergy.bloodDemon] !== "undefined" &&
+        res[synergy.bloodDemon].active
+      ) {
+        for (let synergy in res) {
+          if (res[synergy].divider >= 4 && res[synergy].n >= 3) {
+            res[synergy].n++;
+          }
+        }
+      }
+
       // sort active synergies first
       let sortRes = [];
       for (let synergy in res) {
