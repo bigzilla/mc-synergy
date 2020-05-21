@@ -11,9 +11,7 @@
             class="text-capitalize"
             :disabled="maxLevel"
             @click="upgradeLevel"
-          >
-            Lv. {{ level }}
-          </v-btn>
+          >Lv. {{ level }}</v-btn>
         </v-col>
         <v-col v-for="(hero, i) in deck" :key="i" cols="1">
           <v-item v-slot:default="{ active, toggle }">
@@ -58,17 +56,18 @@ import TriggeredSynergies from "./TriggeredSynergies";
 import heroes from "../assets/js/heroes";
 
 export default {
+  name: "HeroDeck",
   data: () => ({
     level: 3,
     maxLevel: false,
     activeIndex: 0,
-    deck: [null, null, null],
+    deck: [null, null, null]
   }),
   components: {
-    TriggeredSynergies,
+    TriggeredSynergies
   },
   mounted() {
-    this.$root.$on("select-hero", (hero) => {
+    this.$root.$on("select-hero", hero => {
       this.deck.splice(this.activeIndex, 1, heroes[hero]);
       let firstNullDeck = this.findFirstNullDeck();
       if (firstNullDeck === -1) {
@@ -87,8 +86,8 @@ export default {
       }
     },
     findFirstNullDeck() {
-      return this.deck.findIndex((h) => h === null);
-    },
-  },
+      return this.deck.findIndex(h => h === null);
+    }
+  }
 };
 </script>

@@ -16,10 +16,7 @@ export default {
   components: {
     HeroPool,
     HeroDeck,
-    TriggeredSynergies,
-  },
-  data: () => ({
-    //
-  }),
+    TriggeredSynergies
+  }
 };
 </script>

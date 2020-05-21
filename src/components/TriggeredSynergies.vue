@@ -23,14 +23,12 @@
 import synergies, { synergy } from "../assets/js/synergies";
 
 export default {
-  data: () => ({
-    //
-  }),
+  name: "TriggeredSynergies",
   props: {
     deck: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   computed: {
     triggeredSynergies() {
@@ -39,8 +37,8 @@ export default {
       let set = new Set(this.deck);
       set.delete(null);
 
-      Array.from(set).forEach((h) => {
-        h.synergies.forEach((synergy) => {
+      Array.from(set).forEach(h => {
+        h.synergies.forEach(synergy => {
           let asset = synergies[synergy];
           if (typeof res[synergy] === "undefined") {
             res[synergy] = {
@@ -49,11 +47,11 @@ export default {
               step: asset.active.length,
               n: 0,
               divider: 0,
-              active: false,
+              active: false
             };
           }
           res[synergy].n++;
-          let divider = asset.active.find((e) => e > res[synergy].n);
+          let divider = asset.active.find(e => e > res[synergy].n);
           res[synergy].divider =
             typeof divider === "undefined"
               ? asset.active[asset.active.length - 1]
@@ -84,7 +82,7 @@ export default {
       }
       sortRes.sort((a, b) => b.active - a.active);
       return sortRes;
-    },
-  },
+    }
+  }
 };
 </script>

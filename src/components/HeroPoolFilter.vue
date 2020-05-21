@@ -102,28 +102,26 @@
 import synergies, { type } from "../assets/js/synergies";
 
 export default {
-  data: () => ({
-    //
-  }),
+  name: "HeroPoolFilter",
   methods: {
     filterRole(role) {
       this.$emit("filter-role", role);
     },
     filterFaction(faction) {
       this.$emit("filter-faction", faction);
-    },
+    }
   },
   computed: {
     roles() {
-      return synergies.filter((synergy) => {
+      return synergies.filter(synergy => {
         return synergy.type === type.role;
       });
     },
     factions() {
-      return synergies.filter((synergy) => {
+      return synergies.filter(synergy => {
         return synergy.type === type.faction;
       });
-    },
-  },
+    }
+  }
 };
 </script>
