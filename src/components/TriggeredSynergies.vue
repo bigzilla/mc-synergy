@@ -8,7 +8,7 @@
               <v-img
                 :src="synergy.img"
                 alt="role"
-                :gradient="synergy.active === 0 ? 'to top right, rgba(0,0,0,0.8), rgba(0,0,0,0.8)' : ''"
+                :gradient="synergy.active === 0 ? 'to top right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)' : ''"
               ></v-img>
             </v-avatar>
           </v-btn>
