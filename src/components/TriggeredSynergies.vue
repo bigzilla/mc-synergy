@@ -1,19 +1,27 @@
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="synergy in triggeredSynergies" :key="synergy.id" cols="1">
-        <v-avatar size="32">
-          <v-img
-            :src="synergy.img"
-            alt="role"
-            :gradient="
-              synergy.active
-                ? ''
-                : 'to top right, rgba(0,0,0,0.7), rgba(0,0,0,0.7)'
-            "
-          ></v-img>
-        </v-avatar>
-        {{ synergy.n }}/{{ synergy.divider }} ({{ synergy.step }})
+      <v-col v-for="synergy in triggeredSynergies" :key="synergy.id" cols="auto">
+        <v-card class="d-flex flex-column justify-center" tile flat>
+          <v-btn icon class="mx-auto">
+            <v-avatar size="32">
+              <v-img
+                :src="synergy.img"
+                alt="role"
+                :gradient="synergy.active === 0 ? 'to top right, rgba(0,0,0,0.8), rgba(0,0,0,0.8)' : ''"
+              ></v-img>
+            </v-avatar>
+          </v-btn>
+          <div class="mx-auto">
+            <span class="green--text">{{ synergy.n }}</span>
+            <span>/{{ synergy.divider }}</span>
+          </div>
+          <v-progress-linear
+            color="orange"
+            background-color="grey"
+            :value="synergy.active/synergy.step*100"
+          ></v-progress-linear>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -46,27 +54,26 @@ export default {
               img: asset.img,
               step: asset.active.length,
               n: 0,
-              divider: 0,
-              active: false
+              active: 0,
+              divider: 0
             };
           }
           res[synergy].n++;
-          let divider = asset.active.find(e => e > res[synergy].n);
-          res[synergy].divider =
-            typeof divider === "undefined"
-              ? asset.active[asset.active.length - 1]
-              : divider;
-          res[synergy].active =
-            typeof divider === "undefined" || res[synergy].n >= asset.active[0]
-              ? true
-              : false;
+          let step = res[synergy].step;
+          let i = asset.active.findIndex(e => e > res[synergy].n);
+          let active = i === -1 ? step : i;
+          let divider =
+            active === step ? asset.active[active - 1] : asset.active[active];
+
+          res[synergy].active = active;
+          res[synergy].divider = divider;
         });
       });
 
       // add blood demon effect
       if (
         typeof res[synergy.bloodDemon] !== "undefined" &&
-        res[synergy.bloodDemon].active
+        res[synergy.bloodDemon].active > 0
       ) {
         for (let synergy in res) {
           if (res[synergy].divider >= 4 && res[synergy].n >= 3) {
