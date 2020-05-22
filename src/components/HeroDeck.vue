@@ -3,15 +3,7 @@
     <v-item-group mandatory v-model="activeIndex">
       <v-row>
         <v-col cols="2">
-          <v-btn
-            x-large
-            outlined
-            fab
-            color="blue"
-            class="text-capitalize"
-            :disabled="maxLevel"
-            @click="upgradeLevel"
-          >Lv. {{ level }}</v-btn>
+          <CommanderLevel @level-up="levelUp" />
         </v-col>
         <v-col v-for="(hero, i) in deck" :key="i" cols="1">
           <v-item v-slot:default="{ active, toggle }">
@@ -53,18 +45,18 @@
 
 <script>
 import TriggeredSynergies from "./TriggeredSynergies";
+import CommanderLevel from "./CommanderLevel";
 import heroes from "../assets/js/heroes";
 
 export default {
   name: "HeroDeck",
   data: () => ({
-    level: 3,
-    maxLevel: false,
     activeIndex: 0,
     deck: [null, null, null]
   }),
   components: {
-    TriggeredSynergies
+    TriggeredSynergies,
+    CommanderLevel
   },
   mounted() {
     this.$root.$on("select-hero", hero => {
@@ -78,12 +70,8 @@ export default {
     });
   },
   methods: {
-    upgradeLevel() {
-      this.level += 1;
+    levelUp() {
       this.deck.push(null);
-      if (this.level === 9) {
-        this.maxLevel = true;
-      }
     },
     findFirstNullDeck() {
       return this.deck.findIndex(h => h === null);
