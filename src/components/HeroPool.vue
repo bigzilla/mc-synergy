@@ -40,7 +40,7 @@ export default {
       this.faction = faction;
     },
     selectHero(hero) {
-      this.$root.$emit("select-hero", hero);
+      this.$emit("select-hero", hero);
     }
   },
   computed: {

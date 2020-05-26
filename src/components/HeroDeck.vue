@@ -2,6 +2,9 @@
   <v-container>
     <v-item-group mandatory v-model="activeIndex">
       <v-row>
+        <HeroPool @select-hero="selectHero" />
+      </v-row>
+      <v-row>
         <v-col cols="2">
           <CommanderLevel @level-up="levelUp" />
         </v-col>
@@ -44,6 +47,7 @@
 </template>
 
 <script>
+import HeroPool from "./HeroPool";
 import TriggeredSynergies from "./TriggeredSynergies";
 import CommanderLevel from "./CommanderLevel";
 import heroes from "../assets/js/heroes";
@@ -55,19 +59,9 @@ export default {
     deck: [null, null, null]
   }),
   components: {
+    HeroPool,
     TriggeredSynergies,
     CommanderLevel
-  },
-  mounted() {
-    this.$root.$on("select-hero", hero => {
-      this.deck.splice(this.activeIndex, 1, heroes[hero]);
-      let firstNullDeck = this.findFirstNullDeck();
-      if (firstNullDeck === -1) {
-        this.activeIndex += 1;
-      } else {
-        this.activeIndex = firstNullDeck;
-      }
-    });
   },
   methods: {
     levelUp() {
@@ -75,6 +69,15 @@ export default {
     },
     findFirstNullDeck() {
       return this.deck.findIndex(h => h === null);
+    },
+    selectHero(hero) {
+      this.deck.splice(this.activeIndex, 1, heroes[hero]);
+      let firstNullDeck = this.findFirstNullDeck();
+      if (firstNullDeck === -1) {
+        this.activeIndex += 1;
+      } else {
+        this.activeIndex = firstNullDeck;
+      }
     }
   }
 };
