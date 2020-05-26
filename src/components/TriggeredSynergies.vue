@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col v-for="synergy in triggeredSynergies" :key="synergy.id" cols="auto">
-        <v-card class="d-flex flex-column justify-center" tile flat>
+        <v-card class="d-flex flex-column justify-center" tile color="rgba(0, 0, 0, 0)" flat>
           <v-btn icon class="mx-auto">
             <v-avatar size="32">
               <v-img
