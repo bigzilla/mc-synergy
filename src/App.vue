@@ -1,8 +1,10 @@
 <template>
   <v-app>
-    <HeroPool />
-    <HeroDeck />
-    <TriggeredSynergies />
+    <v-content>
+      <HeroPool />
+      <HeroDeck />
+      <TriggeredSynergies />
+    </v-content>
   </v-app>
 </template>
 
@@ -20,3 +22,9 @@ export default {
   }
 };
 </script>
+
+<style>
+html {
+  overflow: hidden !important;
+}
+</style>
