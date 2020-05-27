@@ -1,22 +1,28 @@
 <template>
-  <v-container>
-    <v-item-group>
-      <v-row>
-        <HeroPoolFilter @filter-role="filterRole" @filter-faction="filterFaction" />
-      </v-row>
-      <v-row>
-        <v-col v-for="hero in filteredHeroes" :key="hero.id" cols="1">
-          <v-item>
-            <v-btn icon x-large outlined :color="hero.type" @click="selectHero(hero.id)">
-              <v-avatar size="48">
-                <v-img :src="hero.img" alt="hero"></v-img>
-              </v-avatar>
-            </v-btn>
-          </v-item>
+  <v-card>
+    <v-container>
+      <v-row dense>
+        <v-col cols="12" class="py-0">
+          <HeroPoolFilter @filter-role="filterRole" @filter-faction="filterFaction" />
         </v-col>
       </v-row>
-    </v-item-group>
-  </v-container>
+      <v-item-group>
+        <v-row dense>
+          <v-col v-for="hero in filteredHeroes" :key="hero.id" cols="1">
+            <v-item>
+              <v-card class="d-flex justify-center" color="rgba(0, 0, 0, 0)" flat>
+                <v-btn icon x-large outlined :color="hero.type" @click="selectHero(hero.id)">
+                  <v-avatar size="48">
+                    <v-img :src="hero.img" alt="hero"></v-img>
+                  </v-avatar>
+                </v-btn>
+              </v-card>
+            </v-item>
+          </v-col>
+        </v-row>
+      </v-item-group>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
