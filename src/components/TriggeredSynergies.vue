@@ -44,10 +44,21 @@ export default {
     triggeredSynergies() {
       let res = {};
       // remove duplicate heroes and null slot first
-      let set = new Set(this.deck);
-      set.delete(null);
+      let uniqueDeck = {};
+      this.deck.forEach(h => {
+        if (h === null) {
+          return;
+        }
 
-      set.forEach(h => {
+        if (typeof uniqueDeck[h.id] === "undefined") {
+          uniqueDeck[h.id] = { ...h };
+        } else {
+          uniqueDeck[h.id].items = uniqueDeck[h.id].items.concat(h.items);
+        }
+      });
+
+      for (let id in uniqueDeck) {
+        let h = uniqueDeck[id];
         let items = [];
         h.items.forEach(item => {
           if (item !== null) {
@@ -77,7 +88,7 @@ export default {
           res[synergy].active = active;
           res[synergy].divider = divider;
         });
-      });
+      }
 
       // add blood demon effect
       if (
@@ -85,8 +96,13 @@ export default {
         res[synergy.bloodDemon].active > 0
       ) {
         for (let synergy in res) {
-          if (res[synergy].divider >= 4 && res[synergy].n >= 3) {
+          let n = res[synergy].n;
+          let divider = res[synergy].divider;
+          if (divider >= 4 && n >= 3) {
             res[synergy].n++;
+            if (n + 1 >= divider) {
+              res[synergy].active++;
+            }
           }
         }
       }
