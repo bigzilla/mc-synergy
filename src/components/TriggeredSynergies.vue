@@ -20,7 +20,7 @@
             <v-progress-linear
               color="orange"
               background-color="grey"
-              :value="synergy.active/synergy.step*100"
+              :value="synergy.active/synergy.step.length*100"
             ></v-progress-linear>
           </v-card>
         </v-col>
@@ -40,8 +40,19 @@ export default {
       default: () => []
     }
   },
+  methods: {
+    activeCount(n, step) {
+      let i = step.findIndex(e => e > n);
+      return i === -1 ? step.length : i;
+    },
+    divider(n, step) {
+      let active = this.activeCount(n, step);
+      return active === step.length ? step[active - 1] : step[active];
+    }
+  },
   computed: {
     triggeredSynergies() {
+      // result of triggered synergies
       let res = {};
       // remove duplicate heroes and null slot first
       let uniqueDeck = {};
@@ -57,6 +68,7 @@ export default {
         }
       });
 
+      // count synergies
       for (let id in uniqueDeck) {
         let h = uniqueDeck[id];
         let items = [];
@@ -65,43 +77,37 @@ export default {
             items.push(item.synergy);
           }
         });
-        let arrSynergies = new Set([...h.synergies, ...items]);
-        arrSynergies.forEach(synergy => {
-          let asset = synergies[synergy];
-          if (typeof res[synergy] === "undefined") {
-            res[synergy] = {
+
+        new Set([...h.synergies, ...items]).forEach(id => {
+          if (typeof res[id] === "undefined") {
+            let asset = synergies[id];
+            res[id] = {
               id: asset.id,
               img: asset.img,
-              step: asset.active.length,
+              step: asset.active,
               n: 0,
               active: 0,
               divider: 0
             };
           }
-          res[synergy].n++;
-          let step = res[synergy].step;
-          let i = asset.active.findIndex(e => e > res[synergy].n);
-          let active = i === -1 ? step : i;
-          let divider =
-            active === step ? asset.active[active - 1] : asset.active[active];
+          let s = res[id];
 
-          res[synergy].active = active;
-          res[synergy].divider = divider;
+          s.n++;
+          s.active = this.activeCount(s.n, s.step);
+          s.divider = this.divider(s.n, s.step);
         });
       }
 
       // add blood demon effect
-      if (
-        typeof res[synergy.bloodDemon] !== "undefined" &&
-        res[synergy.bloodDemon].active > 0
-      ) {
-        for (let synergy in res) {
-          let n = res[synergy].n;
-          let divider = res[synergy].divider;
-          if (divider >= 4 && n >= 3) {
-            res[synergy].n++;
-            if (n + 1 >= divider) {
-              res[synergy].active++;
+      let bloodDemon = res[synergy.bloodDemon];
+      if (typeof bloodDemon !== "undefined" && bloodDemon.active > 0) {
+        for (let id in res) {
+          let s = res[id];
+          if (s.divider >= 4 && s.n >= 3) {
+            s.n++;
+            if (s.n + 1 >= s.divider) {
+              s.active = this.activeCount(s.n, s.step);
+              s.divider = this.divider(s.n, s.step);
             }
           }
         }
@@ -109,8 +115,8 @@ export default {
 
       // sort active synergies first
       let sortRes = [];
-      for (let synergy in res) {
-        sortRes.push(res[synergy]);
+      for (let id in res) {
+        sortRes.push(res[id]);
       }
       sortRes.sort((a, b) => b.active - a.active);
       return sortRes;
