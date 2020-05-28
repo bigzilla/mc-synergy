@@ -43,7 +43,7 @@ export default Object.freeze([
     id: synergy.targeman,
     name: "Targeman",
     type: type.role,
-    active: [2],
+    active: [2, 4],
     img: require("@/assets/img/role_targeman.png"),
   },
   {
