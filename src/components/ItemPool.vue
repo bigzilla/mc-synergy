@@ -16,14 +16,9 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-card-actions>
+      <v-card-actions class="grey lighten-1">
         <v-spacer></v-spacer>
-        <v-btn
-          text
-          color="red"
-          class="text-capitalize"
-          @click="$emit('remove-crystal'), closeDialog()"
-        >Remove</v-btn>
+        <v-btn block color="error" @click="$emit('remove-crystal'), closeDialog()">Remove</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

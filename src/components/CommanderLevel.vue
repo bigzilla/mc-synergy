@@ -1,11 +1,11 @@
 <template>
-  <v-card class="d-flex justify-center align-center fill-height" color="rgba(0, 0, 0, 0)" flat>
-    <v-badge overlap color="rgba(0, 0, 0, 0)" offset-x="25">
+  <v-card class="d-flex justify-center align-center fill-height" color="transparent" flat>
+    <v-badge overlap color="transparent" offset-x="25">
       <v-btn
         v-if="!scienceCrystal"
         slot="badge"
         icon
-        color="green"
+        color="success"
         @click="$emit('apply-science-crystal', true); addSlot()"
       >
         <v-icon>mdi-plus-circle</v-icon>
@@ -17,9 +17,8 @@
       </v-btn>
       <v-btn
         x-large
-        outlined
         fab
-        color="blue"
+        color="primary"
         class="text-capitalize"
         :disabled="maxLevel"
         @click="addSlot"

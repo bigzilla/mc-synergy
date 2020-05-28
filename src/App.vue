@@ -1,9 +1,10 @@
 <template>
   <v-app>
-    <AppBar />
+    <AppBar app />
+
     <v-content>
-      <v-container fluid class="fill-height py-0">
-        <v-row align-content="space-between" class="fill-height">
+      <v-container fluid class="grey lighten-3 fill-height py-0">
+        <v-row class="fill-height">
           <!-- row 1 -->
           <v-col cols="2">
             <TriggeredSynergies :deck="deck" />
@@ -16,7 +17,13 @@
               <!-- reserved for additional information -->
             </v-card>
           </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
 
+    <v-footer app padless>
+      <v-container fluid class="grey lighten-3 pa-0">
+        <v-row>
           <!-- row 2 -->
           <v-col cols="1">
             <CommanderLevel :heroSlot="deck.length" @add-slot="addSlot" v-model="scienceCrystal" />
@@ -29,7 +36,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
+    </v-footer>
   </v-app>
 </template>
 

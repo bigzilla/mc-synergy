@@ -1,6 +1,6 @@
 <template>
-  <v-card class="d-flex justify-center align-center fill-height" color="rgba(0, 0, 0, 0)" flat>
-    <v-btn x-large fab color="red" class="text-capitalize" @click="$emit('reset')">Reset</v-btn>
+  <v-card class="d-flex justify-center align-center fill-height" color="transparent" flat>
+    <v-btn x-large fab color="error" @click="$emit('reset')">Reset</v-btn>
   </v-card>
 </template>
 

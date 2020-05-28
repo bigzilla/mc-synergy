@@ -1,6 +1,6 @@
 <template>
   <v-item-group mandatory :value="index" @change="$emit('change-slot', $event)">
-    <v-card>
+    <v-card dark color="grey darken-3">
       <v-container class="pa-0">
         <v-row>
           <v-col v-for="(hero, i) in deck" :key="i" cols="auto" class="py-0">

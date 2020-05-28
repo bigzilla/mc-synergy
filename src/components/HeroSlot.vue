@@ -1,6 +1,10 @@
 <template>
   <v-item-group mandatory v-model="itemIndex">
-    <v-card :flat="!activeSlot" :raised="activeSlot">
+    <v-card
+      :flat="!activeSlot"
+      :raised="activeSlot"
+      :color="activeSlot? 'grey darken-2': 'grey darken-3'"
+    >
       <v-container class="pa-0">
         <v-row v-if="hero === null" no-gutters justify="center">
           <v-col v-for="n in 3" :key="n">
@@ -26,7 +30,6 @@
               icon
               x-large
               :elevation="activeSlot ? 10 : 0"
-              :color="activeSlot ? 'red' : ''"
               :outlined="activeSlot"
               :input-value="activeSlot"
               @click="toggleSlot"

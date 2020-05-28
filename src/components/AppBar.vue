@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="grey" dense app>
+  <v-app-bar color="grey darken-3" dense :app="app" dark>
     <v-spacer></v-spacer>
     <v-tooltip bottom v-for="(social, i) in socials" :key="i">
       <template v-slot:activator="{on}">
@@ -33,6 +33,12 @@ export default {
         tooltip: "View me on Github"
       }
     ]
-  })
+  }),
+  props: {
+    app: {
+      type: Boolean,
+      default: false
+    }
+  }
 };
 </script>

@@ -1,32 +1,32 @@
 <template>
-  <v-card>
-    <v-container>
-      <v-row dense>
-        <v-col v-for="synergy in triggeredSynergies" :key="synergy.id" cols="3">
-          <v-card class="d-flex flex-column justify-center" color="rgba(0, 0, 0, 0)" flat>
-            <v-btn icon class="mx-auto">
-              <v-avatar size="32">
-                <v-img
-                  :src="synergy.img"
-                  alt="role"
-                  :gradient="synergy.active === 0 ? 'to top right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)' : ''"
-                ></v-img>
-              </v-avatar>
-            </v-btn>
-            <div class="mx-auto">
-              <span class="green--text">{{ synergy.n }}</span>
-              <span>/{{ synergy.divider }}</span>
-            </div>
-            <v-progress-linear
-              color="orange"
-              background-color="grey"
-              :value="synergy.active/synergy.step.length*100"
-            ></v-progress-linear>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
+  <!-- <v-card> -->
+  <v-container>
+    <v-row dense>
+      <v-col v-for="synergy in triggeredSynergies" :key="synergy.id" cols="3">
+        <v-card class="d-flex flex-column justify-center" color="rgba(0, 0, 0, 0)" flat>
+          <v-btn icon class="mx-auto">
+            <v-avatar size="32">
+              <v-img
+                :src="synergy.img"
+                alt="role"
+                :gradient="synergy.active === 0 ? 'to top right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)' : ''"
+              ></v-img>
+            </v-avatar>
+          </v-btn>
+          <div class="mx-auto">
+            <span class="green--text">{{ synergy.n }}</span>
+            <span>/{{ synergy.divider }}</span>
+          </div>
+          <v-progress-linear
+            color="orange"
+            background-color="grey"
+            :value="synergy.active/synergy.step.length*100"
+          ></v-progress-linear>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+  <!-- </v-card> -->
 </template>
 
 <script>
