@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex justify-center" color="rgba(0, 0, 0, 0)" flat>
+  <v-card class="d-flex justify-center align-center fill-height" color="rgba(0, 0, 0, 0)" flat>
     <v-badge overlap color="rgba(0, 0, 0, 0)" offset-x="25">
       <v-btn
         v-if="!scienceCrystal"
