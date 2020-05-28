@@ -47,8 +47,15 @@ export default {
       let set = new Set(this.deck);
       set.delete(null);
 
-      Array.from(set).forEach(h => {
-        h.synergies.forEach(synergy => {
+      set.forEach(h => {
+        let items = [];
+        h.items.forEach(item => {
+          if (item !== null) {
+            items.push(item.synergy);
+          }
+        });
+        let arrSynergies = new Set([...h.synergies, ...items]);
+        arrSynergies.forEach(synergy => {
           let asset = synergies[synergy];
           if (typeof res[synergy] === "undefined") {
             res[synergy] = {

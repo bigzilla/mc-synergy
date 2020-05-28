@@ -20,7 +20,7 @@
           <CommanderLevel :heroSlot="deck.length" @add-slot="addSlot" v-model="scienceCrystal" />
         </v-col>
         <v-col cols="10">
-          <HeroDeck :deck="deck" v-model="slotIndex" />
+          <HeroDeck :deck="deck" v-model="slotIndex" @delete-hero="deleteHero" />
         </v-col>
         <v-col cols="1">
           <ResetButton @reset="reset" />
@@ -56,19 +56,31 @@ export default {
   methods: {
     addSlot() {
       this.deck.push(null);
+      this.slotIndex = this.findFirstNullSlot();
     },
     selectHero(hero) {
-      this.deck.splice(this.slotIndex, 1, heroes[hero]);
-      let firstNullSlot = this.deck.findIndex(h => h === null);
+      this.deck.splice(this.slotIndex, 1, {
+        ...heroes[hero],
+        items: [null, null, null] // 3 item slots
+      });
+      let firstNullSlot = this.findFirstNullSlot();
       if (firstNullSlot === -1) {
-        this.slotIndex += 1;
+        this.slotIndex++;
       } else {
         this.slotIndex = firstNullSlot;
       }
     },
+    findFirstNullSlot() {
+      return this.deck.findIndex(h => h === null);
+    },
+    deleteHero() {
+      this.deck.splice(this.slotIndex, 1, null);
+      this.slotIndex++;
+    },
     reset() {
       this.deck.splice(0, this.deck.length, null, null, null);
       this.scienceCrystal = false;
+      this.slotIndex = 0;
     }
   }
 };
@@ -77,5 +89,6 @@ export default {
 <style>
 html {
   overflow: hidden !important;
+  user-select: none;
 }
 </style>
