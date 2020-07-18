@@ -7,36 +7,34 @@ export const hero = Object.freeze({
   saber: i++,
   akai: i++,
   zilong: i++,
-  chou: i++,
   martis: i++,
   vale: i++,
   harith: i++,
 
   /***** good *****/
+  balmond: i++,
   franco: i++,
   eudora: i++,
   lolita: i++,
   moskov: i++,
   argus: i++,
   lancelot: i++,
-  diggie: i++,
-  zhask: i++,
   jawhead: i++,
   change: i++,
-  baxia: i++,
+  minsitthar: i++,
+  khufra: i++,
   carmilla: i++,
 
   /***** elite *****/
-  alice: i++,
   tigreal: i++,
   alucard: i++,
   freya: i++,
+  cyclops: i++,
   karrie: i++,
   gusion: i++,
   valir: i++,
   selena: i++,
   belerick: i++,
-  khufra: i++,
   esmeralda: i++,
   dyrroth: i++,
   wanwan: i++,
@@ -45,13 +43,13 @@ export const hero = Object.freeze({
   karina: i++,
   bruno: i++,
   natalia: i++,
-  sun: i++,
   johnson: i++,
   aurora: i++,
+  zhask: i++,
   claude: i++,
   guinevere: i++,
   cecilion: i++,
-  popolAndKupa: i++,
+  luoyi: i++,
 
   /***** legend *****/
   minotaur: i++,
@@ -60,6 +58,7 @@ export const hero = Object.freeze({
   odette: i++,
   thamuz: i++,
   ling: i++,
+  yuzhong: i++,
 });
 
 export const type = Object.freeze({
@@ -101,13 +100,6 @@ export default Object.freeze([
     img: require("@/assets/img/hero_zilong.png"),
   },
   {
-    id: hero.chou,
-    name: "Chou",
-    type: type.normal,
-    synergies: [synergy.wrestler, synergy.eruditio],
-    img: require("@/assets/img/hero_chou.png"),
-  },
-  {
     id: hero.martis,
     name: "Martis",
     type: type.normal,
@@ -130,6 +122,13 @@ export default Object.freeze([
   },
 
   /***** good *****/
+  {
+    id: hero.balmond,
+    name: "Balmond",
+    type: type.good,
+    synergies: [synergy.guardian, synergy.abyss],
+    img: require("@/assets/img/hero_balmond.png"),
+  },
   {
     id: hero.franco,
     name: "Franco",
@@ -173,20 +172,6 @@ export default Object.freeze([
     img: require("@/assets/img/hero_lancelot.png"),
   },
   {
-    id: hero.diggie,
-    name: "Diggie",
-    type: type.good,
-    synergies: [synergy.summoner, synergy.guardian, synergy.eruditio],
-    img: require("@/assets/img/hero_diggie.png"),
-  },
-  {
-    id: hero.zhask,
-    name: "Zhask",
-    type: type.good,
-    synergies: [synergy.summoner, synergy.celestial],
-    img: require("@/assets/img/hero_zhask.png"),
-  },
-  {
     id: hero.jawhead,
     name: "Jawhead",
     type: type.good,
@@ -201,11 +186,18 @@ export default Object.freeze([
     img: require("@/assets/img/hero_chang'e.png"),
   },
   {
-    id: hero.baxia,
-    name: "Baxia",
+    id: hero.minsitthar,
+    name: "Minsitthar",
     type: type.good,
-    synergies: [synergy.targeman, synergy.dragonsAltar],
-    img: require("@/assets/img/hero_baxia.png"),
+    synergies: [synergy.targeman, synergy.celestial],
+    img: require("@/assets/img/hero_minsitthar.png"),
+  },
+  {
+    id: hero.khufra,
+    name: "Khufra",
+    type: type.good,
+    synergies: [synergy.wrestler, synergy.westernDesert],
+    img: require("@/assets/img/hero_khufra.png"),
   },
   {
     id: hero.carmilla,
@@ -216,13 +208,6 @@ export default Object.freeze([
   },
 
   /***** elite *****/
-  {
-    id: hero.alice,
-    name: "Alice",
-    type: type.elite,
-    synergies: [synergy.mage, synergy.abyss],
-    img: require("@/assets/img/hero_alice.png"),
-  },
   {
     id: hero.tigreal,
     name: "Tigreal",
@@ -243,6 +228,13 @@ export default Object.freeze([
     type: type.elite,
     synergies: [synergy.weaponMaster, synergy.northernVale],
     img: require("@/assets/img/hero_freya.png"),
+  },
+  {
+    id: hero.cyclops,
+    name: "Cyclops",
+    type: type.elite,
+    synergies: [synergy.mage, synergy.celestial],
+    img: require("@/assets/img/hero_cyclops.png"),
   },
   {
     id: hero.karrie,
@@ -269,7 +261,7 @@ export default Object.freeze([
     id: hero.selena,
     name: "Selena",
     type: type.elite,
-    synergies: [synergy.assassin, synergy.elf],
+    synergies: [synergy.shaperShifter, synergy.assassin, synergy.elf],
     img: require("@/assets/img/hero_selena.png"),
   },
   {
@@ -278,13 +270,6 @@ export default Object.freeze([
     type: type.elite,
     synergies: [synergy.guardian, synergy.elf],
     img: require("@/assets/img/hero_belerick.png"),
-  },
-  {
-    id: hero.khufra,
-    name: "Khufra",
-    type: type.elite,
-    synergies: [synergy.wrestler, synergy.westernDesert],
-    img: require("@/assets/img/hero_khufra.png"),
   },
   {
     id: hero.esmeralda,
@@ -331,13 +316,6 @@ export default Object.freeze([
     img: require("@/assets/img/hero_natalia.png"),
   },
   {
-    id: hero.sun,
-    name: "Sun",
-    type: type.epic,
-    synergies: [synergy.summoner, synergy.dragonsAltar],
-    img: require("@/assets/img/hero_sun.png"),
-  },
-  {
     id: hero.johnson,
     name: "Johnson",
     type: type.epic,
@@ -350,6 +328,13 @@ export default Object.freeze([
     type: type.epic,
     synergies: [synergy.elementalist, synergy.mage, synergy.northernVale],
     img: require("@/assets/img/hero_aurora.png"),
+  },
+  {
+    id: hero.zhask,
+    name: "Zhask",
+    type: type.epic,
+    synergies: [synergy.shaperShifter, synergy.celestial],
+    img: require("@/assets/img/hero_zhask.png"),
   },
   {
     id: hero.claude,
@@ -373,11 +358,11 @@ export default Object.freeze([
     img: require("@/assets/img/hero_cecilion.png"),
   },
   {
-    id: hero.popolAndKupa,
-    name: "Popol and Kupa",
+    id: hero.luoyi,
+    name: "Luo-Yi",
     type: type.epic,
-    synergies: [synergy.marksman, synergy.summoner, synergy.northernVale],
-    img: require("@/assets/img/hero_popol_and_kupa.png"),
+    synergies: [synergy.elementalist, synergy.dragonsAltar],
+    img: require("@/assets/img/hero_luo_yi.png"),
   },
 
   /***** legend *****/
@@ -422,5 +407,12 @@ export default Object.freeze([
     type: type.legendary,
     synergies: [synergy.assassin, synergy.dragonsAltar],
     img: require("@/assets/img/hero_ling.png"),
+  },
+  {
+    id: hero.yuzhong,
+    name: "Yu-Zhong",
+    type: type.legendary,
+    synergies: [synergy.shaperShifter, synergy.dragonsAltar],
+    img: require("@/assets/img/hero_yu_zhong.png"),
   },
 ]);

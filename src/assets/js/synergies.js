@@ -7,14 +7,13 @@ export const synergy = Object.freeze({
   elementalist: i++,
   mage: i++,
   guardian: i++,
-  summoner: i++,
+  shaperShifter: i++,
   wrestler: i++,
   assassin: i++,
 
   /***** faction *****/
   elf: i++,
   westernDesert: i++,
-  eruditio: i++,
   cyborg: i++,
   bloodDemon: i++,
   dragonsAltar: i++,
@@ -75,11 +74,11 @@ export default Object.freeze([
     img: require("@/assets/img/role_guardian.png"),
   },
   {
-    id: synergy.summoner,
-    name: "Summoner",
+    id: synergy.shaperShifter,
+    name: "Shaper-Shifter",
     type: type.role,
-    active: [2, 4],
-    img: require("@/assets/img/role_summoner.png"),
+    active: [2],
+    img: require("@/assets/img/role_shaper_shifter.png"),
   },
   {
     id: synergy.wrestler,
@@ -110,13 +109,6 @@ export default Object.freeze([
     type: type.faction,
     active: [2, 4, 6],
     img: require("@/assets/img/faction_western_desert.png"),
-  },
-  {
-    id: synergy.eruditio,
-    name: "Eruditio",
-    type: type.faction,
-    active: [2],
-    img: require("@/assets/img/faction_eruditio.png"),
   },
   {
     id: synergy.cyborg,
@@ -164,7 +156,7 @@ export default Object.freeze([
     id: synergy.celestial,
     name: "Celestial",
     type: type.faction,
-    active: [2, 4],
+    active: [3, 6],
     img: require("@/assets/img/faction_celestial.png"),
   },
   {
